@@ -1,11 +1,17 @@
 package com.android.compose_instagram.login.ui
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.android.compose_instagram.login.domain.LoginUseCase
+import kotlinx.coroutines.launch
 
 class LoginViewModel: ViewModel() {
+
+    private val loginUseCase = LoginUseCase()
 
     private val _email = MutableLiveData<String>()
     val email: LiveData<String> = _email
@@ -16,6 +22,9 @@ class LoginViewModel: ViewModel() {
     private val _loginEnabled = MutableLiveData<Boolean>()
     val loginEnabled: LiveData<Boolean> = _loginEnabled
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     fun onLoginChange(email: String, password: String) {
         _email.value = email
         _password.value = password
@@ -24,4 +33,16 @@ class LoginViewModel: ViewModel() {
 
     private fun enabledLogin(): Boolean =
         (Patterns.EMAIL_ADDRESS.matcher(email.value.orEmpty()).matches() && password.value.orEmpty().length >= 6)
+
+    fun onLoginSelected() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            val result = loginUseCase(email = email.value.orEmpty(), password = password.value.orEmpty())
+            if (result) {
+                //navegar
+                Log.i("Login", "Navegar ate a seguinte tela")
+            }
+            _isLoading.value = false
+        }
+    }
 }

@@ -1,4 +1,5 @@
-package com.android.compose_instagram.login.data.network
+package com.android.compose_instagram.login.data.network.response
 
-class Response {
-}
+data class LoginResponse(
+    val success: Boolean
+)
