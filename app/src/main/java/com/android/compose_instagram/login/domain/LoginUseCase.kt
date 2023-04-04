@@ -1,11 +1,10 @@
 package com.android.compose_instagram.login.domain
 
 import com.android.compose_instagram.login.data.LoginRepository
+import javax.inject.Inject
 
-class LoginUseCase {
-
-    private val repository = LoginRepository()
+class LoginUseCase @Inject constructor(private val loginRepository: LoginRepository) {
 
     suspend operator fun invoke(email: String, password: String): Boolean =
-        repository.doLogin(email = email, password = password)
+        loginRepository.doLogin(email = email, password = password)
 }
