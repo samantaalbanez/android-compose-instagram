@@ -1,13 +1,15 @@
 # android-compose-instagram
 
-Clone instagram project using compose
+Application for registration of
 
 ## Main Technologies
 
 * Compose
 * Hilt
 * Retrofit
+* Room
+* MVVM
 
 ## Screenshoot
 
-<img width="268" alt="Captura de Tela 2023-04-08 às 15 33 08" src="https://user-images.githubusercontent.com/94557935/230737403-63dd3f42-da78-41d8-8b95-ce4be304f626.png">
+![Captura de Tela 2023-04-11 às 09 41 10](https://user-images.githubusercontent.com/94557935/231165250-bd024840-cd5c-4153-ae74-bff42b20af0e.png)
